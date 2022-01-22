@@ -5,7 +5,7 @@ name: Build Apple Color Emoji font
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, ios-14.6 ]
   pull_request:
     branches: [ master ]
 
@@ -16,15 +16,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.9
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install fonttools
-        python -m pip install https://github.com/googlefonts/nototools/archive/v0.2.1.tar.gz
+        python -m pip install notofonttools
         sudo apt-get update
         sudo apt-get install --yes optipng zopfli pngquant
     - name: Build Apple color emoji font
